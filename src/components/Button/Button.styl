@@ -1,0 +1,156 @@
+@import '../../styles/_constants.styl';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+.button
+  position: relative
+  font-family: "Roboto", sans-serif
+  font-weight: 500
+  font-style: normal
+  overflow: hidden
+  max-width: 100%
+
+  &.disabled, &.loading
+    pointer-events: none
+
+  &.disabled
+    opacity: 0.36
+
+  & .button_content
+    display: flex
+
+  &.primary
+    background: $primary-color
+    color: $light-text-color
+    & .loader path
+      fill: $light-text-color
+    & .button_overlay
+    & .button_click-overlay 
+       background: $light-text-color
+    & .button_overlay.shimmer_overlay
+      background: $light-gradient
+      opacity: 0.12
+      background: $light-gradient
+
+  &.secondary
+    background: $secondary-color
+    color: $dark-text-color
+    & .loader path
+      fill: $dark-text-color
+    & .button_overlay
+    & .button_click-overlay 
+       background: $dark-text-color
+    & .button_overlay.shimmer_overlay
+      background: $dark-gradient
+      opacity: 0.12
+
+  &.size-28
+    padding: 6px 10px
+    font-size: 13px
+    border-radius: 9px
+    & .button_content
+      column-gap: 4px
+    & .loader 
+      width: 16px
+      height: 16px 
+
+  &.size-36
+    padding: 8px 12px
+    font-size: 15px
+    border-radius: 12px
+    & .button_content
+      column-gap: 6px
+    & .loader 
+      width: 20px
+      height: 20px        
+
+  &.size-56
+    padding: 16px 16px
+    font-size: 17px
+    border-radius: 16px
+    & .button_content
+      column-gap: 8px
+    & .loader 
+      width: 24px
+      height: 24px         
+ 
+  
+.button_overlay
+  position: absolute
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  transform: translate(-100%, 0%)
+  border-radius: 0;
+  opacity: 0.12
+
+.button_overlay
+.button
+  transition: all 500ms cubic-bezier(0, -0.3, 0.5, 1.3)
+
+.button_content
+  transform: rotateY(0deg)
+
+.button_content
+.loader
+  backface-visibility: hidden
+  transition: transform 500ms cubic-bezier(0, -0.3, 0.5, 1.3)
+
+.loader
+  opacity: 0
+  transition: opacity 0.6s ease, transform 0.6s ease
+
+.button
+  &.loading
+    & .button_content 
+       transform: rotateY(180deg)
+    & .loader
+      opacity: 1;
+
+.button:active
+  transform: scale(0.95)
+  & > .button_click-overlay 
+    position: absolute
+    width: 20px
+    height: 20px
+    border-radius: 50%
+    opacity: 0.2
+    animation: expand 500ms cubic-bezier(0, -0.3, 0.5, 1.3)
+    animation-fill-mode: forwards
+
+.button:focus-visible
+  outline: 3px solid $focus-outline-color
+  outline-offset: 5px;
+
+.shimmer_overlay {
+  width: calc(100%/3)
+  transform: translateX(-100%)
+  animation: shimmer 2s cubic-bezier(0, -0.3, 0.5, 1.3) infinite
+}  
+
+@keyframes expand {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(20);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(300%);
+  }
+}
+
+@media (hover: hover) 
+  .button:hover
+    & > .button_overlay
+      opacity: 0.12
+      transform: translate(0%, 0%)
+    & > .button_content
+      transform: scale(1.05)

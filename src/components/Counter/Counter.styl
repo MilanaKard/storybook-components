@@ -1,0 +1,98 @@
+@import '../../styles/_constants.styl';
+
+size(n)
+  min-height: n
+  min-width: n
+  line-height: n
+
+.counter
+  position: relative
+  font-family: "Roboto", sans-serif
+  font-weight: 500
+  border-radius: 999px
+  flex-shrink: 0
+  &.primary
+    background: $primary-counter-color
+    color: $light-text-color
+
+  &.secondary
+    background: $secondary-counter-color
+    color: $dark-text-color
+
+  &.size-24
+    padding: 0 6px
+    size(24px)
+    font-size: 15px
+    border-width: 3px
+
+  &.size-20
+    padding: 0 4px
+    size(20px)
+    font-size: 13px
+    border-width: 2px
+
+  &.size-16
+    padding: 0 4px
+    size(16px)
+    font-size: 11px
+
+  &.size-12, &.size-16
+    border-width: 2px 
+
+  &.size-12, &.size-12 .dot, &.size-12 .pulse
+    height: 12px
+    width: 12px
+
+  &.size-8
+    border-width: 1px 
+    
+  &.size-8, &.size-8 .dot, &.size-8 .pulse
+    height: 8px
+    width: 8px
+    
+  &.stroke
+    border-color: $counter-border-color
+    border-style: solid
+
+.live-indicator
+  position: relative
+  display: flex
+  align-items: center
+  justify-content: center
+
+.live-indicator .dot
+ .live-indicator .pulse
+  position: absolute
+  border-radius: 999px
+  background-color: inherit
+  width: inherit
+  height: inherit
+
+.live-indicator .pulse 
+  animation-name: dot-scale-fade
+  animation-iteration-count: infinite
+  animation-duration: 2s
+
+
+.live-indicator .pulse.two {
+  animation-delay: 0.25s
+}
+
+
+@keyframes dot-scale-fade {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(3);
+  }
+  
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+
+
