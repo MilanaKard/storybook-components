@@ -49,19 +49,22 @@ const App = () => {
     <main className="main">
       <Button onClick={() => { setIsLoadingPrimary(true) }} size={56} state={isLoadingPrimary ? "loading" : "enabled"}>
         <Button.Label text={"Привет! Нажми на меня"} />
-        <Button.Counter stroke={false} quantity={"100"} pulse={true} />
+        <Button.Counter stroke={false} quantity={"100"} />
       </Button>
-      <Button onClick={() => { setIsLoadingSecondary(true) }} size={56} state={isLoadingSecondary ? "loading" : "enabled"} variant={"secondary"}>
+      <Button onClick={() => { setIsLoadingSecondary(true) }} size={56} state={isLoadingSecondary ? "loading" : "enabled"} variant="secondary">
         <Button.Label text={"Привет! Нажми на меня"} />
-        <Button.Counter stroke={false} quantity={"100"} pulse={true} />
+        <Button.Counter stroke={false} quantity={"10"} />
+      </Button>
+      <Button onClick={() => {}} state="disabled">
+        <Button.Label text={"Привет! Нажми на меня"} />
+        <Button.Counter quantity={"1"} />
       </Button>
       <div className="counters counters-dark"> 
-        {testValues.map((values) => <Counter variant={"secondary"} {...values} />)}
+        {testValues.map((values) => <Counter variant="secondary" {...values} />)}
       </div>
       <div className="counters counters-light"> 
       {testValues.map((values) => <Counter  {...values}/>)}
       </div>
-     
     </main>
   );
 }
