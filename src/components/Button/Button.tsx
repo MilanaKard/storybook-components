@@ -27,8 +27,8 @@ const Button = (props: React.PropsWithChildren<ButtonProps>): JSX.Element => {
 
   const handleMouseDown = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const width = Math.sqrt(Math.pow(rect.width, 2) + Math.pow(size, 2)) / 10;
-    const x = e.clientX - rect.left;
+    const width = Math.sqrt(Math.pow(rect.width, 2) + Math.pow(size, 2)) / 10; //вычисляем диагональ кнопки и уменьшаем её в 10 раз, это будет радиус круга, который появляется при клике на кнопку, а затем увеличивается в 20 раз, покрывая кнопку целиком
+    const x = e.clientX - rect.left;                                         
     const y = e.clientY - rect.top;
     setClickOverlayStyle({ left: x, top: y, width, height: width });
     setIsPressed(true);
