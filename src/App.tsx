@@ -4,36 +4,41 @@ import "./App.styl";
 import { useState } from "react";
 import { CounterProps } from "./components/Counter/Counter";
 
-const testValues: CounterProps[] = [
+const testValues: (CounterProps & {key: string})[] = [
   {
     quantity: "333",
     size: 24,
     stroke: true,
     pulse: false,
+    key: '1'
   },
   {
     quantity: "15",
     size: 20,
     stroke: false,
     pulse: false,
+    key: '2'
   },
   {
     quantity: "3",
     size: 16,
     stroke: false,
     pulse: false,
+    key: '3'
   },
   {
     quantity: "333",
     size: 12,
     stroke: false,
     pulse: true,
+    key: '4'
   },
   {
     quantity: "333",
     size: 8,
     stroke: false,
     pulse: true,
+    key: '5'
   }
 ];
 
@@ -51,10 +56,10 @@ const App = () => {
         <Button.Counter stroke={false} quantity={"100"} pulse={true} />
       </Button>
       <div className="counters counters-dark"> 
-        {testValues.map((values, index) => <Counter key={index} variant={"secondary"} quantity={values.quantity} size={values.size} stroke={values.stroke} pulse={values.pulse} />)}
+        {testValues.map((values) => <Counter variant={"secondary"} {...values} />)}
       </div>
       <div className="counters counters-light"> 
-      {testValues.map((values, index) => <Counter key={index} quantity={values.quantity} size={values.size} stroke={values.stroke} pulse={values.pulse} />)}
+      {testValues.map((values) => <Counter  {...values}/>)}
       </div>
      
     </main>
