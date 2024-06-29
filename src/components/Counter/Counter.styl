@@ -1,9 +1,12 @@
 @import '../../styles/_constants.styl';
 
-size(n)
-  min-height: n
-  min-width: n
-  line-height: n
+size(size, border)
+  min-height: size
+  min-width: size
+  line-height: size
+  border-width: border
+  &.stroke
+    line-height: size - border * 2
 
 .counter
   position: relative
@@ -21,23 +24,19 @@ size(n)
 
   &.size-24
     padding: 0 6px
-    size(24px)
+    size(24px, 3px)
     font-size: 15px
-    border-width: 3px
 
   &.size-20
     padding: 0 4px
-    size(20px)
+    size(20px, 2px)
     font-size: 13px
-    border-width: 2px
 
   &.size-16
     padding: 0 4px
-    size(16px)
+    size(16px, 2px)
     font-size: 11px
 
-  &.size-12, &.size-16
-    border-width: 2px 
 
   &.size-12, &.size-12 .dot, &.size-12 .pulse
     height: 12px
@@ -61,7 +60,7 @@ size(n)
   justify-content: center
 
 .live-indicator .dot
- .live-indicator .pulse
+.live-indicator .pulse
   position: absolute
   border-radius: 999px
   background-color: inherit
