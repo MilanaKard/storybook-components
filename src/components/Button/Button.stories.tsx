@@ -40,8 +40,24 @@ export default {
 const Template: StoryFn<ButtonProps> = (args) => (
   <Button {...args}>
     <Button.Label text="Что сделать" />
+    <Button.Counter stroke={false} quantity="3" pulse={false} />
+  </Button>
+);
+
+const ButtonTemplate: StoryFn<ButtonProps> = (args) => (
+  <Button {...args}>
+    <Button.Label text="Что сделать" />
     <Button.Counter stroke={false} quantity="123" pulse={false} />
   </Button>
+);
+
+const ShrunkButtonTemplate: StoryFn<ButtonProps> = (args) => (
+  <div style={{ width: 170, height: 100, background: 'grey'}}>
+    <Button {...args}>
+      <Button.Label text="Что сделать" />
+      <Button.Counter stroke={false} quantity="123" pulse={false} />
+    </Button>
+  </div>
 );
 
 const TemplateLabelOnly: StoryFn<ButtonProps> = (args) => (
@@ -50,10 +66,31 @@ const TemplateLabelOnly: StoryFn<ButtonProps> = (args) => (
   </Button>
 );
 
-export const Default = Template.bind({});
+export const Default = TemplateLabelOnly.bind({});
 Default.args = {
   variant: "primary",
   size: 36,
+  state: "enabled",
+};
+
+export const DefaultWithCounter = Template.bind({});
+DefaultWithCounter.args = {
+  variant: "primary",
+  size: 36,
+  state: "enabled",
+};
+
+export const SecondaryWithCounter = ButtonTemplate.bind({});
+SecondaryWithCounter.args = {
+  variant: "secondary",
+  size: 56,
+  state: "enabled",
+};
+
+export const Shrunk = ShrunkButtonTemplate.bind({});
+Shrunk.args = {
+  variant: "primary",
+  size: 56,
   state: "enabled",
 };
 
@@ -69,11 +106,4 @@ PrimarySmallDisabled.args = {
   variant: "primary",
   size: 28,
   state: "disabled",
-};
-
-export const PrimaryLarge = TemplateLabelOnly.bind({});
-PrimaryLarge.args = {
-  variant: "primary",
-  size: 56,
-  state: "enabled",
 };
