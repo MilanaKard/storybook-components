@@ -22,7 +22,7 @@ const Counter = (props: CounterProps): JSX.Element => {
   }
 
   return (
-    <div className={`counter ${variant} size-${size} ${stroke ? "stroke" : ""} ${pulse ? "live-indicator" : ""}`}>
+    <div className={`counter ${variant} size-${size} ${stroke ? "stroke" : ""} ${pulse ? "live-indicator" : ""}`} data-testid="counter">
       {size >= 16 ? <p className={`counter_value`}>{value}</p> : ""}
       {pulse && size <= 12 ? (
         <>
