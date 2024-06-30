@@ -6,6 +6,7 @@ export type CounterProps = {
   stroke?: true | false;
   quantity?: string;
   pulse?: true | false;
+  style?: React.CSSProperties;
 };
 
 const getCounterValue = (quantity: string): string => {
@@ -22,10 +23,10 @@ const getCounterValue = (quantity: string): string => {
 };
 
 const Counter = (props: CounterProps): JSX.Element => {
-  const { variant = "primary", size = 8, stroke = true, pulse = false, quantity = "" } = props;
+  const { variant = "primary", size = 8, stroke = true, pulse = false, quantity = "", style = {} } = props;
 
   return (
-    <div className={`counter ${variant} size-${size} ${stroke ? "stroke" : ""} ${pulse ? "live-indicator" : ""}`} data-testid="counter">
+    <div className={`counter ${variant} size-${size} ${stroke ? "stroke" : ""} ${pulse ? "live-indicator" : ""}`} style={style} data-testid="counter">
       {size >= 16 ? <p className={`counter_value`}>{getCounterValue(quantity)}</p> : ""}
       {pulse && size <= 12 ? (
         <>

@@ -8,6 +8,7 @@ export type ButtonProps = {
   variant?: "primary" | "secondary";
   size?: 28 | 36 | 56;
   state?: "enabled" | "loading" | "disabled";
+  style?: React.CSSProperties;
   onClick: () => void;
 };
 
@@ -19,7 +20,7 @@ type ButtonContextProps = {
 export const ButtonContext = createContext<ButtonContextProps>({ variant: "primary", size: 36 });
 
 const Button = (props: React.PropsWithChildren<ButtonProps>): JSX.Element => {
-  const { variant = "primary", size = 36, state = "enabled", onClick, children } = props;
+  const { variant = "primary", size = 36, state = "enabled", style = {}, onClick, children } = props;
   const [clickOverlayStyle, setClickOverlayStyle] = useState({ left: 0, top: 0, width: 0, height: 0 });
   const [isPressed, setIsPressed] = useState(false);
 
@@ -40,7 +41,7 @@ const Button = (props: React.PropsWithChildren<ButtonProps>): JSX.Element => {
   };
 
   return (
-    <button onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} className={`button ${variant} size-${size} ${state}`}>
+    <button onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} className={`button ${variant} size-${size} ${state}`} style={style}>
       <ButtonContext.Provider value={contextValue}>
         <div className="button_content">{children}</div>
       </ButtonContext.Provider>
