@@ -1,5 +1,5 @@
-import Button from "./components/Button/Button";
-import Counter from "./components/Counter/Counter";
+import { Button }from "./index";
+import { Counter }from "./index";
 import "./App.styl";
 import { useState } from "react";
 import { CounterProps } from "./components/Counter/Counter";
